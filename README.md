@@ -78,7 +78,7 @@ diff atteso.txt risultato.txt
 programma è stato anche controllato con AddressSanitizer (`gcc -fsanitize=address`)
 e con Valgrind Memcheck per escludere accessi fuori dai limiti e perdite di
 memoria; i due strumenti vanno usati in compilazioni separate, perché sono
-incompatibili fra loro. I dettagli d'uso sono in [`docs/note-strumenti.md`](docs/note-strumenti.md).
+incompatibili fra loro.
 
 ## Costi
 
