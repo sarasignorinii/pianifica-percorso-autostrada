@@ -14,8 +14,10 @@ che modificano stazioni e veicoli, e per ogni richiesta pianifica il percorso co
 il minor numero di tappe. A parità di tappe vince il percorso che predilige le
 stazioni più vicine all'inizio dell'autostrada.
 
+Compila senza warning con le stesse opzioni usate dal verificatore ufficiale:
+
 ```sh
-gcc -Wall -Wextra -O2 -std=c11 -o autostrada autostrada.c
+gcc -Wall -Werror -std=gnu11 -O2 -lm autostrada.c -o autostrada
 ./autostrada < input.txt > output.txt
 ```
 
@@ -62,6 +64,21 @@ di percorrenza condividono lo stesso codice.
 **I/O bufferizzato.** I file di prova contengono milioni di token: leggerli con
 `scanf` costerebbe più dell'algoritmo. Due buffer da 64 KB e un parser di interi
 scritto a mano.
+
+## Verifica in locale
+
+Per confrontare l'output del programma con quello atteso di un caso di test:
+
+```sh
+./autostrada < caso.txt > risultato.txt
+diff atteso.txt risultato.txt
+```
+
+`diff` non stampa nulla se i due file sono identici. Durante lo sviluppo il
+programma è stato anche controllato con AddressSanitizer (`gcc -fsanitize=address`)
+e con Valgrind Memcheck per escludere accessi fuori dai limiti e perdite di
+memoria; i due strumenti vanno usati in compilazioni separate, perché sono
+incompatibili fra loro. I dettagli d'uso sono in [`docs/note-strumenti.md`](docs/note-strumenti.md).
 
 ## Costi
 
